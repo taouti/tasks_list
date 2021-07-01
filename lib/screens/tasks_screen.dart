@@ -13,7 +13,7 @@ class TasksScreen extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet<dynamic>(
             enableDrag: true,
-            //isScrollControlled: true,
+            isScrollControlled: true,
             backgroundColor: Color(0xFF747474),
             context: context,
             builder: (context) => AddTaskScreen(),

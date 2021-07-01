@@ -4,9 +4,18 @@ import 'package:tasks_list/constants.dat.dart';
 class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double keyBoardHeight = MediaQuery.of(context).viewInsets.bottom;
     return Container(
       padding: EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        color: KAddTaskScreenBackgroundColor,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
+      ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
@@ -24,22 +33,18 @@ class AddTaskScreen extends StatelessWidget {
           SizedBox(height: 15.0),
           MaterialButton(
             height: 50.0,
-            minWidth: double.infinity,
             color: KMainColor,
-            onPressed: () {},
+            onPressed: () {
+              print(
+                  'there you goo: ${MediaQuery.of(context).viewInsets.bottom}');
+            },
             child: Text(
               'Add',
               style: TextStyle(fontSize: 18.0, color: Colors.white),
             ),
           ),
+          SizedBox(height: keyBoardHeight),
         ],
-      ),
-      decoration: BoxDecoration(
-        color: KAddTaskScreenBackgroundColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0),
-        ),
       ),
     );
   }
