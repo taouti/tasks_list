@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:tasks_list/screens/add_task_screen.dart';
 import 'package:tasks_list/widgets/tasks_list.dart';
 
 import '../constants.dat.dart';
 
 class TasksScreen extends StatelessWidget {
-  const TasksScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KMainColor,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet<dynamic>(
+            enableDrag: true,
+            //isScrollControlled: true,
+            backgroundColor: Color(0xFF747474),
+            context: context,
+            builder: (context) => AddTaskScreen(),
+          );
+        },
         backgroundColor: KMainColor,
         child: Icon(Icons.add),
       ),
