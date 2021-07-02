@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_list/constants.dat.dart';
+import 'package:tasks_list/services/task.dart';
+import 'package:tasks_list/widgets/tasks_list.dart';
 
 class AddTaskScreen extends StatelessWidget {
+  String newTask = '';
+  Function(String title) onAdd;
+  AddTaskScreen({required this.onAdd});
   @override
   Widget build(BuildContext context) {
     double keyBoardHeight = MediaQuery.of(context).viewInsets.bottom;
@@ -29,14 +34,20 @@ class AddTaskScreen extends StatelessWidget {
             autofocus: true,
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.black, fontSize: 20.0),
+            onChanged: (value) {
+              newTask = value;
+            },
           ),
           SizedBox(height: 15.0),
           MaterialButton(
             height: 50.0,
             color: KMainColor,
             onPressed: () {
-              print(
-                  'there you goo: ${MediaQuery.of(context).viewInsets.bottom}');
+              if (newTask != '') {
+                onAdd(newTask);
+              } else {
+                Navigator.pop(context);
+              }
             },
             child: Text(
               'Add',
