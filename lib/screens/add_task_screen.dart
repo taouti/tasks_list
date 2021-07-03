@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tasks_list/constants.dat.dart';
-import 'package:tasks_list/services/task.dart';
-import 'package:tasks_list/widgets/tasks_list.dart';
+import 'package:tasks_list/services/list_of_tasks.dart';
 
 class AddTaskScreen extends StatelessWidget {
   String newTask = '';
-  Function(String title) onAdd;
-  AddTaskScreen({required this.onAdd});
   @override
   Widget build(BuildContext context) {
     double keyBoardHeight = MediaQuery.of(context).viewInsets.bottom;
@@ -44,7 +42,9 @@ class AddTaskScreen extends StatelessWidget {
             color: KMainColor,
             onPressed: () {
               if (newTask != '') {
-                onAdd(newTask);
+                Provider.of<ListOfTasks>(context, listen: false)
+                    .addTask(name: newTask);
+                Navigator.pop(context);
               } else {
                 Navigator.pop(context);
               }

@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tasks_list/screens/add_task_screen.dart';
-import 'package:tasks_list/services/task.dart';
+import 'package:tasks_list/services/list_of_tasks.dart';
 import 'package:tasks_list/widgets/tasks_list.dart';
-
 import '../constants.dat.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [];
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +17,7 @@ class _TasksScreenState extends State<TasksScreen> {
             isScrollControlled: true,
             backgroundColor: Color(0xFF747474),
             context: context,
-            builder: (context) => AddTaskScreen(
-              onAdd: (newTask) {
-                setState(() {
-                  tasks.add(Task(name: newTask));
-                });
-                Navigator.pop(context);
-              },
-            ),
+            builder: (context) => AddTaskScreen(),
           );
         },
         backgroundColor: KMainColor,
@@ -63,7 +50,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       color: KTextColor),
                 ),
                 Text(
-                  '${tasks.length} Tasks',
+                  '${Provider.of<ListOfTasks>(context).taskCount} Tasks',
                   style: TextStyle(color: KTextColor, fontSize: 18.0),
                 ),
               ],
@@ -78,7 +65,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     topRight: Radius.circular(20.0)),
                 color: KTextColor,
               ),
-              child: TasksList(tasks: tasks),
+              child: TasksList(),
             ),
           ),
         ],
