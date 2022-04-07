@@ -5,6 +5,7 @@ import 'package:tasks_list/widgets/demands_list.dart';
 import 'package:tasks_list/widgets/selection_status_box.dart';
 
 import '../constants.dart';
+import 'add_demand_screen.dart';
 
 class HomePage extends StatelessWidget {
   final double _selectionWidth = 200.0;
@@ -18,19 +19,19 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KMainColor,
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     showModalBottomSheet<dynamic>(
-      //       enableDrag: true,
-      //       isScrollControlled: true,
-      //       backgroundColor: Color(0xFF747474),
-      //       context: context,
-      //       builder: (context) => AddTaskScreen(),
-      //     );
-      //   },
-      //   backgroundColor: KMainColor,
-      //   child: Icon(Icons.add),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet<dynamic>(
+            enableDrag: true,
+            isScrollControlled: true,
+            backgroundColor: Color(0xFF747474),
+            context: context,
+            builder: (context) => AddDemandScreen(),
+          );
+        },
+        backgroundColor: KMainColor,
+        child: Icon(Icons.add),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

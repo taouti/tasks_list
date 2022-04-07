@@ -12,43 +12,46 @@ class DemandsList extends StatelessWidget {
           itemCount: listOfDemands.demandCount,
           itemBuilder: (context, index) {
             final demand = listOfDemands.demands[index];
-            return DemandTile(
-              onLongPress: () {
-                if (demand.isDone) {
-                  listOfDemands.deleteDemand(demand);
-                } else {
-                  showDialog<String>(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text('Delete Unchecked Task!'),
-                      content: const Text(
-                          'you are about to delete an unchecked task, do you want to delete it anyway?'),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Cancel'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            listOfDemands.deleteDemand(demand);
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Yes'),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-              },
-              demandID: demand.demandID,
-              deliveryPosition: demand.deliveryPosition,
-              price: demand.price,
-              productsCount: demand.productsCount,
-              onChanged: (bool? value) {
-                listOfDemands.updateDemand(demand);
-              },
+            return Padding(
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+              child: DemandTile(
+                onLongPress: () {
+                  if (demand.isDone) {
+                    listOfDemands.deleteDemand(demand);
+                  } else {
+                    showDialog<String>(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text('Delete Unaccomplished DEMAND!'),
+                        content: const Text(
+                            'you are about to delete an unaccomplished demand, do you want to delete it anyway?'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              listOfDemands.deleteDemand(demand);
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Yes'),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                },
+                demandID: demand.demandID,
+                deliveryPosition: demand.deliveryPosition,
+                price: demand.price,
+                productsCount: demand.productsCount,
+                onChanged: (bool? value) {
+                  listOfDemands.updateDemand(demand);
+                },
+              ),
             );
           },
         );

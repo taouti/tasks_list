@@ -10,7 +10,25 @@ class ListOfDemands extends ChangeNotifier {
         price: '1200DA',
         deliveryPosition: 'Wahat',
         productsCount: '30',
-        isDone: false)
+        isDone: false),
+    Demand(
+        demandID: '000',
+        price: '1200DA',
+        deliveryPosition: 'Wahat',
+        productsCount: '30',
+        isDone: false),
+    Demand(
+        demandID: '000',
+        price: '1200DA',
+        deliveryPosition: 'Wahat',
+        productsCount: '30',
+        isDone: false),
+    Demand(
+        demandID: '000',
+        price: '1200DA',
+        deliveryPosition: 'Wahat',
+        productsCount: '30',
+        isDone: false),
   ];
 
   int get demandCount {
