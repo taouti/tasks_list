@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tasks_list/services/list_of_tasks.dart';
-import 'package:tasks_list/widgets/task_tile.dart';
+import 'package:tasks_list/services/list_of_demands.dart';
+import 'package:tasks_list/widgets/demand_tile.dart';
 
-class TasksList extends StatelessWidget {
+class DemandsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<ListOfTasks>(
-      builder: (context, listOfTasks, child) {
+    return Consumer<ListOfDemands>(
+      builder: (context, listOfDemands, child) {
         return ListView.builder(
-          itemCount: listOfTasks.taskCount,
+          itemCount: listOfDemands.demandCount,
           itemBuilder: (context, index) {
-            final task = listOfTasks.tasks[index];
-            return TaskTile(
+            final demand = listOfDemands.demands[index];
+            return DemandTile(
               onLongPress: () {
-                if (task.isDone) {
-                  listOfTasks.deleteTask(task);
+                if (demand.isDone) {
+                  listOfDemands.deleteDemand(demand);
                 } else {
                   showDialog<String>(
                     context: context,
@@ -32,7 +32,7 @@ class TasksList extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            listOfTasks.deleteTask(task);
+                            listOfDemands.deleteDemand(demand);
                             Navigator.pop(context);
                           },
                           child: const Text('Yes'),
@@ -42,10 +42,12 @@ class TasksList extends StatelessWidget {
                   );
                 }
               },
-              tileTitle: task.name,
-              isChecked: task.isDone,
+              demandID: demand.demandID,
+              deliveryPosition: demand.deliveryPosition,
+              price: demand.price,
+              productsCount: demand.productsCount,
               onChanged: (bool? value) {
-                listOfTasks.updateTask(task);
+                listOfDemands.updateDemand(demand);
               },
             );
           },
